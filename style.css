@@ -11,7 +11,7 @@
     height: 250px;
 }
 
-div>div>div {
+.cell {
     padding: 10px;
     background-color: #ccc;
     height: fit-content;
