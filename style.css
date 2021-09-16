@@ -16,3 +16,13 @@
     background-color: #ccc;
     height: fit-content;
 }
+
+.setup {
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.playerPanel {
+    text-align: center;
+}
