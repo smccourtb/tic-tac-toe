@@ -3,6 +3,7 @@ const Gameboard = (() => {
     let gameboard = ["", "", "",
                      "", "", "",
                      "", "", ""]
+    const winningCombinations = [[0,1,2], [0,3,6], [0,4,8], [1,4,7], [2,4,6], [2,5,8], [3,4,5], [6,7,8]]
     const clear = () => {
         for(let i = 0; i < gameboard.length; i++){
             update(i, "");
@@ -24,7 +25,32 @@ const Gameboard = (() => {
             container.append(cell)
         };
     })();
-    return {update}
+    const state = (player) => {
+        let index = []
+        for(let i = 0; i < gameboard.length; i++) {
+            if(gameboard[i] === player){
+                index.push(i);
+            };
+        
+        };
+        console.log(index)
+        
+        for(combo of winningCombinations){
+            // make a copy of index
+            let temp = index
+            if (temp.length > 2){
+            // go thorugh each element of temp and check if that elemnt appears in combo
+                for(j of combo){
+                    if(temp.includes(j)) {
+                        // remove the element from temp
+                     
+                        return console.log(`${player} wins`)
+                    }
+                }
+         }
+        }
+    }
+    return {update, state}
 })()
 
 const Player = ((representation) => {
@@ -47,6 +73,7 @@ const GameState = (() => {
             const cell = document.getElementById(i)
             cell.addEventListener('click', () => {
                 board.update(cell.getAttribute('id'), current_player.letter);
+                board.state(current_player.letter)
                 turn += 1;
                 if(current_player===player1) {
                     console.log(current_player)
@@ -56,6 +83,7 @@ const GameState = (() => {
                     console.log(current_player)
                     current_player = player1;
                 }
+                
                 console.log(turn)
             });
     };
