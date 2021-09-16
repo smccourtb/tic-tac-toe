@@ -74,18 +74,20 @@ const GameState = (() => {
         for(let i = 0; i < 9; i++){
             const cell = document.getElementById(i)
             cell.addEventListener('click', () => {
-                board.update(cell.getAttribute('id'), current_player.letter);
-                board.state(current_player.letter)
-                if(current_player===player1) {
-                    console.log(current_player)
-                    current_player = player2;
-                } 
-                else {
-                    console.log(current_player)
-                    current_player = player1;
-                }
+                if (cell.textContent === "") {
+                    board.update(cell.getAttribute('id'), current_player.letter);
+                    board.state(current_player.letter)
+                    if(current_player===player1) {
+                        console.log(current_player)
+                        current_player = player2;
+                    } 
+                    else {
+                        console.log(current_player)
+                        current_player = player1;
+                    }
                 
-            });
+                };
+        });
     };
 })();
 
